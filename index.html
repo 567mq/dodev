@@ -3,278 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FiveM Files - ملفات فايف ام مخصصة</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>FiveM QBCore Script | ملف سيرفر فايف ام كوستم</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav class="topbar">
-    <div class="wrap">
-        <a href="#" class="brand">FIVEM<span class="hl">FILES</span></a>
-        <ul class="links">
-            <li><a href="#features">المميزات</a></li>
-            <li><a href="#content">المحتوى</a></li>
-            <li><a href="#reviews">الآراء</a></li>
-            <li><a href="#faq">الأسئلة</a></li>
-        </ul>
-        <a href="#buy" class="nav-cta">اشترِ الآن</a>
+<header class="head">
+    <div class="row">
+        <div class="logo">FIVEM<span class="dot">.</span>FILES</div>
+        <nav>
+            <a href="#about" data-t="nav_about">المنتج</a>
+            <a href="#orders" data-t="nav_orders">الطلبات</a>
+            <a href="#reviews" data-t="nav_reviews">آراء</a>
+            <a href="#faq" data-t="nav_faq">أسئلة</a>
+        </nav>
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
     </div>
-</nav>
+</header>
 
-<section class="hero">
-    <div class="wrap hero-inner">
-        <div class="hero-text">
-            <div class="tag">ملفات مخصصة فقط</div>
-            <h1>كل ملفات <span class="hl">FiveM</span> اللي تحتاجها في مكان واحد</h1>
-            <p class="sub">حزمة كاملة من الاسكربتات والملفات المخصصة لسيرفرك. ملفات مجربة وتشتغل بدون مشاكل. تحديثات مستمرة.</p>
-            <div class="hero-price">
-                <span class="old-price">$79.99</span>
-                <span class="new-price">$29.99</span>
-                <span class="discount">-62%</span>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<main>
+
+<section class="top">
+    <div class="row top-row">
+        <div class="top-text">
+            <p class="label" data-t="hero_label">QBCore Custom Script</p>
+            <h1 data-t="hero_title">ملف سيرفر <span class="dot">FiveM</span> QBCore كوستم</h1>
+            <p class="desc" data-t="hero_desc">
+                ملف اسكربت مخصص لسيرفر QBCore. مبرمج من الصفر ومجرب على سيرفرات حقيقية.
+                ما يبطي السيرفر ويشتغل بدون أي أخطاء. مع تعليمات تثبيت عربي.
+            </p>
+            <div class="price-box">
+                <span class="was">$79</span>
+                <span class="now">$29</span>
+                <span class="off" data-t="hero_off">وفّر 62%</span>
             </div>
-            <a href="#buy" class="btn-main">احصل على الحزمة الآن</a>
-            <div class="trust-row">
-                <span>✅ +300 عميل</span>
-                <span>✅ تحديثات مجانية</span>
-                <span>✅ دعم فني</span>
-            </div>
+            <a href="#buy" class="cta" data-t="hero_cta">احصل على الملف</a>
+            <p class="trust" data-t="hero_trust">+300 عميل · تحديثات مجانية · دعم فني</p>
         </div>
-        <div class="hero-visual">
-            <div class="visual-box">
-                <div class="glow"></div>
-                <div class="icon-grid">
-                    <span>📁</span><span>🎮</span><span>⚡</span>
-                    <span>🔧</span><span>🚗</span><span>🗺️</span>
+        <div class="top-vis">
+            <div class="vis-card" id="visCard">
+                <div class="vis-glow"></div>
+                <div class="vis-items">
+                    <i>📁</i><i>🎮</i><i>⚡</i>
+                    <i>🔧</i><i>📦</i><i>⚙️</i>
                 </div>
-                <div class="visual-label">FiveM Custom Files Pack</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="features" class="section">
-    <div class="wrap">
-        <h2 class="sec-title">ليش تحصل ملفاتنا؟</h2>
-        <div class="feat-grid">
-            <div class="feat">
-                <div class="feat-num">01</div>
-                <h3>ملفات مخصصة بالكامل</h3>
-                <p>كل ملف مبرمج ومحضر من الصفر. ما نستخدم ملفات جاهزة. كل شي كاستم يشتغل على سيرفرك.</p>
-            </div>
-            <div class="feat">
-                <div class="feat-num">02</div>
-                <h3>مجرب ومفحوص</h3>
-                <p>كل ملف يختبر على سيرفر حقيق قبل لا ننزله. ما راح تلقى مشاكل أو أخطاء.</p>
-            </div>
-            <div class="feat">
-                <div class="feat-num">03</div>
-                <h3>تحديثات مستمرة</h3>
-                <p>نحدث الملفات دايماً حسب جديد FiveM. لما تشتري مرة واحدة، التحديثات مجانية.</p>
-            </div>
-            <div class="feat">
-                <div class="feat-num">04</div>
-                <h3>تثبيت سهل</h3>
-                <p>مع كل ملف ملف تعليمات عربي مفصل يشرح لك كيف تثبت. لو واجهتك مشكلة، فريقنا يساعدك.</p>
-            </div>
-            <div class="feat">
-                <div class="feat-num">05</div>
-                <h3>جودة عالية</h3>
-                <p>الملفات خفيفة وسريعة. ما تبطي السيرفر. كل ملف محسّن عشان يشتغل بأفضل حال.</p>
-            </div>
-            <div class="feat">
-                <div class="feat-num">06</div>
-                <h3>دعم فني مباشر</h3>
-                <p>لو عندك أي مشكلة في التثبيت، تقدر تتواصل معنا مباشرة. نرد عليك بأسرع وقت.</p>
+                <p class="vis-tag" data-t="hero_tag">ملف واحد كامل</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="content" class="section alt">
-    <div class="wrap">
-        <h2 class="sec-title">وش داخل الحزمة؟</h2>
-        <div class="content-list">
-            <div class="content-item">
-                <span class="ci-icon">🔫</span>
-                <div>
-                    <h4>اسكربتات اللعب</h4>
-                    <p>مهمات مافيا، نظام شرطة، بنك، وظائف، وأكثر. كل اسكربت كاستم.</p>
-                </div>
+<section id="about" class="strip">
+    <div class="row">
+        <h2 class="sec-h" data-t="feat_title">ليش ملفنا؟</h2>
+        <div class="feat-row">
+            <div class="feat-card">
+                <span class="feat-n">01</span>
+                <h3 data-t="feat1_h">برمجة من الصفر</h3>
+                <p data-t="feat1_p">الملف مبرمج يدوياً بدون نسخ أو سرقة. كل سطر كود مكتوب خصيصاً لسيرفرك.</p>
             </div>
-            <div class="content-item">
-                <span class="ci-icon">🚗</span>
-                <div>
-                    <h4>ملفات المركبات</h4>
-                    <p>مركبات رياضية، عسكرية، ومركبات خاصة. كل مركبة بجودة عالية.</p>
-                </div>
+            <div class="feat-card">
+                <span class="feat-n">02</span>
+                <h3 data-t="feat2_h">مجرب قبل لا يوصلك</h3>
+                <p data-t="feat2_p">يشتغل على سيرفر QBCore حقيقي. لو فيه أي مشكلة، ما ننزله.</p>
             </div>
-            <div class="content-item">
-                <span class="ci-icon">🗺️</span>
-                <div>
-                    <h4>خرائط مخصصة</h4>
-                    <p>خريطة المدينة مع مناطق جديدة ومباني إضافية تخلّي سيرفرك مختلف.</p>
-                </div>
+            <div class="feat-card">
+                <span class="feat-n">03</span>
+                <h3 data-t="feat3_h">خفييف على السيرفر</h3>
+                <p data-t="feat3_p">الملف محسّن وخفيف. ما يأثر على الـ FPS أو سرعة السيرفر.</p>
             </div>
-            <div class="content-item">
-                <span class="ci-icon">📱</span>
-                <div>
-                    <h4>واجهات HUD</h4>
-                    <p>واجهات عصرية للصحة، النقود، الخريطة الصغيرة. كل شي يensing بشكل جميل.</p>
-                </div>
-            </div>
-            <div class="content-item">
-                <span class="ci-icon">🎵</span>
-                <div>
-                    <h4>مؤثرات صوتية</h4>
-                    <p>مؤثرات وأصوات مخصصة تخلي تجربة اللعب أكثر واقعية.</p>
-                </div>
-            </div>
-            <div class="content-item">
-                <span class="ci-icon">⚙️</span>
-                <div>
-                    <h4>أدوات الإدارة</h4>
-                    <p>ملفات لإدارة السيرفر: نظام عقوبات، نظام إعلانات، لوحة تحكم.</p>
-                </div>
+            <div class="feat-card">
+                <span class="feat-n">04</span>
+                <h3 data-t="feat4_h">تحديثات مجانية</h3>
+                <p data-t="feat4_p">اشتري مرة واحصل على كل التحديثات بدون رسوم إضافية.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="reviews" class="section">
-    <div class="wrap">
-        <h2 class="sec-title">ماذا يقول عملاؤنا؟</h2>
-        <div class="reviews-grid">
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>"أفضل حزمة ملفات شريتها لسيرفري. كل شي يشتغل بدون مشاكل والتحديثات مجانية!"</p>
-                <div class="reviewer">- أحمد من السعودية</div>
+<section class="strip dark">
+    <div class="row">
+        <h2 class="sec-h" data-t="pack_title">وش داخل الملف</h2>
+        <div class="pack-grid">
+            <div class="pack-item">
+                <span>📦</span>
+                <h4 data-t="pack1_h">ملف QBCore جاهز</h4>
+                <p data-t="pack1_p">ملف واحد كامل يشتغل على سيرفرك مباشرة</p>
             </div>
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>"الملفات خفيفة وما تبطي السيرفر. السيرفر صار يشتغل أحسن بمره."</p>
-                <div class="reviewer">- محمد من الكويت</div>
+            <div class="pack-item">
+                <span>📝</span>
+                <h4 data-t="pack2_h">تعليمات عربي</h4>
+                <p data-t="pack2_p">شرح مفصّل خطوة بخطوة بالعربي</p>
             </div>
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>"الفريق ساعدني في التثبيت وردّ علي بسرعة. خدمة ممتازة."</p>
-                <div class="reviewer">- خالد من الإمارات</div>
+            <div class="pack-item">
+                <span>🔧</span>
+                <h4 data-t="pack3_h">إعداد سهل</h4>
+                <p data-t="pack3_p">تثبيت في دقائق بدون تعقيد</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<section id="buy" class="section buy-section">
-    <div class="wrap">
-        <div class="buy-card">
-            <div class="buy-badge">عرض لفترة محدودة</div>
-            <h2>حزمة ملفات FiveM الكاملة</h2>
-            <div class="buy-features">
-                <span>✅ جميع الاسكربتات</span>
-                <span>✅ جميع المركبات</span>
-                <span>✅ الخرائط المخصصة</span>
-                <span>✅ واجهات HUD</span>
-                <span>✅ تحديثات مجانية</span>
-                <span>✅ دعم فني مباشر</span>
-                <span>✅ تعليمات تثبيت</span>
+            <div class="pack-item">
+                <span>⚙️</span>
+                <h4 data-t="pack4_h">متوافق مع QBCore</h4>
+                <p data-t="pack4_p">يشتغل مع جميع إصدارات QBCore</p>
             </div>
-            <div class="buy-pricing">
-                <span class="old-price">$79.99</span>
-                <span class="new-price">$29.99</span>
+            <div class="pack-item">
+                <span>🛡️</span>
+                <h4 data-t="pack5_h">آمن ومضمون</h4>
+                <p data-t="pack5_p">ما فيه فيروسات أو كود ضار</p>
             </div>
-            <a href="#" class="btn-buy" onclick="openPayment()">اشترِ الحزمة الآن</a>
-            <p class="buy-note">دفع آمن عبر PayPal - الملفات توصلك فوراً</p>
-        </div>
-    </div>
-</section>
-
-<section id="faq" class="section alt">
-    <div class="wrap">
-        <h2 class="sec-title">الأسئلة الشائعة</h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-q" onclick="toggleFaq(this)">
-                    <span>كيف أحصل على الملفات بعد الشراء؟</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-a">
-                    <p>بعد الدفع عبر PayPal، راح نرسل لك الملفات على بريدك الإلكتروني خلال دقائق. كما أنك تقدر تحمّلها مباشرة من صفحة التأكيد.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" onclick="toggleFaq(this)">
-                    <span>الملفات تشتغل على أي سيرفر FiveM؟</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-a">
-                    <p>نعم، الملفات تشتغل على جميع سيرفرات FiveM. بس تأكد إن إصدار FiveM عندك محدّث.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" onclick="toggleFaq(this)">
-                    <span>وش أحتاج عشان أثبّت الملفات؟</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-a">
-                    <p>تحتاج سيرفر FiveM شغال وملف تعليمات مفصّل موجود مع الحزمة. التثبيت بسيط ويأخذ دقائق.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" onclick="toggleFaq(this)">
-                    <span>أقدر أطلب تعديلات على الملفات؟</span>
-                    <span class="faq-arrow">▼</span>
-                </div>
-                <div class="faq-a">
-                    <p>نعم! لو تبي تعديل معين، تقدر تتواصل معنا ونساعدك. الخدمة متاحة لجميع العملاء.</p>
-                </div>
+            <div class="pack-item">
+                <span>💬</span>
+                <h4 data-t="pack6_h">دعم فني</h4>
+                <p data-t="pack6_p">نساعدك لو واجهتك أي مشكلة</p>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="footer">
-    <div class="wrap">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <a href="#" class="brand">FIVEM<span class="hl">FILES</span></a>
-                <p>أفضل حزمة ملفات FiveM مخصصة لسيرفرك</p>
+<section id="reviews" class="strip">
+    <div class="row">
+        <h2 class="sec-h" data-t="rev_title">عملاؤنا يقولون</h2>
+        <div class="rev-row">
+            <div class="rev-card">
+                <p class="rev-stars">★★★★★</p>
+                <p class="rev-text" data-t="rev1_t">"الملف شغال تمام على سيرفري. التثبيت كان سهل والشرح عربي واضح."</p>
+                <p class="rev-name" data-t="rev1_n">أحمد — السعودية</p>
             </div>
-            <div class="footer-links">
-                <a href="#features">المميزات</a>
-                <a href="#content">المحتوى</a>
-                <a href="#reviews">الآراء</a>
-                <a href="#faq">الأسئلة</a>
+            <div class="rev-card">
+                <p class="rev-stars">★★★★★</p>
+                <p class="rev-text" data-t="rev2_t">"خفيف وما يبطي السيرفر. جربت ملفات ثانية قبل كذا كانت تسبب مشاكل."</p>
+                <p class="rev-name" data-t="rev2_n">محمد — الكويت</p>
+            </div>
+            <div class="rev-card">
+                <p class="rev-stars">★★★★★</p>
+                <p class="rev-text" data-t="rev3_t">"وقف معاي وقت التثبيت وردّ علي بسرعة. خدمة ممتازة."</p>
+                <p class="rev-name" data-t="rev3_n">خالد — الإمارات</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 FiveM Files. جميع الحقوق محفوظة.</p>
+    </div>
+</section>
+
+<section id="buy" class="strip dark">
+    <div class="row">
+        <div class="buy-box">
+            <p class="buy-tag" data-t="buy_tag">عرض محدود</p>
+            <h2 data-t="buy_title">ملف QBCore كوستم</h2>
+            <ul class="buy-list">
+                <li data-t="buy1">✅ ملف اسكربت مخصص</li>
+                <li data-t="buy2">✅ تعليمات تثبيت عربي</li>
+                <li data-t="buy3">✅ متوافق مع QBCore</li>
+                <li data-t="buy4">✅ تحديثات مجانية</li>
+                <li data-t="buy5">✅ دعم فني مباشر</li>
+                <li data-t="buy6">✅ تثبيت في دقائق</li>
+            </ul>
+            <div class="buy-price">
+                <span class="was">$79</span>
+                <span class="now">$29</span>
+            </div>
+            <button class="cta buy-btn" onclick="openPay()" data-t="buy_btn">اشترِ الآن</button>
+            <p class="buy-sub" data-t="buy_sub">دفع آمن عبر PayPal</p>
         </div>
+    </div>
+</section>
+
+<section id="faq" class="strip">
+    <div class="row">
+        <h2 class="sec-h" data-t="faq_title">أسئلة شائعة</h2>
+        <div class="faq-box">
+            <details>
+                <summary data-t="faq1_q">كيف أستلم الملف بعد الدفع؟</summary>
+                <p data-t="faq1_a">بعد الدفع، راح نرسل لك الملف على البريد حقك. وأيضاً تقدر تحمّله من صفحة التأكيد.</p>
+            </details>
+            <details>
+                <summary data-t="faq2_q">الملف يشتغل على أي سيرفر؟</summary>
+                <p data-t="faq2_a">يشتغل على أي سيرفر QBCore. بس تأكد إن الـ QBCore عندك محدّث.</p>
+            </details>
+            <details>
+                <summary data-t="faq3_q">وش أحتاج عشان أثبّت؟</summary>
+                <p data-t="faq3_a">سيرفر FiveM شغال + QBCore. الملف مع مع تعليمات عربي مفصّلة.</p>
+            </details>
+            <details>
+                <summary data-t="faq4_q">أقدر أطلب تعديلات على الملف؟</summary>
+                <p data-t="faq4_a">أيوا، تقدر تتواصل معنا ونسوي لك التعديل اللي تبيه.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<section id="orders" class="strip dark">
+    <div class="row">
+        <h2 class="sec-h" data-t="orders_title">الطلبات المسبقة</h2>
+        <div id="ordersList" class="orders-list">
+            <p class="orders-empty" data-t="orders_empty">ما في طلبات سابقة بعد</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="foot">
+    <div class="row foot-row">
+        <div class="foot-brand">FIVEM<span class="dot">.</span>FILES</div>
+        <p class="foot-copy" data-t="footer">© 2026 FiveM Files — جميع الحقوق محفوظة</p>
     </div>
 </footer>
 
-<div class="modal-overlay" id="paymentModal">
-    <div class="modal">
-        <div class="modal-header">
-            <h3>الدفع عبر PayPal</h3>
-            <button class="close-btn" onclick="closePayment()">✕</button>
+<div class="overlay" id="overlay" onclick="closePay()">
+    <div class="popup" onclick="event.stopPropagation()">
+        <button class="popup-x" onclick="closePay()">✕</button>
+        <h3 data-t="popup_title">إتمام الطلب</h3>
+        <div class="popup-item">
+            <span data-t="popup_product">ملف QBCore كوستم</span>
+            <span>$29</span>
         </div>
-        <div class="modal-body">
-            <div class="payment-summary">
-                <div class="payment-item">
-                    <span>حزمة ملفات FiveM الكاملة</span>
-                    <span>$29.99</span>
-                </div>
-                <div class="payment-total">
-                    <span>الإجمالي</span>
-                    <span>$29.99</span>
-                </div>
-            </div>
-            <div id="paypal-container"></div>
-            <p class="payment-note">ستتم معالجة الدفع عبر PayPal لحسابنا</p>
+        <div class="popup-total">
+            <span data-t="popup_total">الإجمالي</span>
+            <span>$29</span>
         </div>
+        <div id="paypal-box"></div>
+        <p class="popup-note" data-t="popup_note">الأموال تتحول مباشرة لحسابنا عبر PayPal</p>
     </div>
 </div>
 
+<div class="overlay" id="receiptOverlay" onclick="closeReceipt()">
+    <div class="popup receipt-popup" onclick="event.stopPropagation()">
+        <div class="receipt" id="receiptContent"></div>
+        <div class="receipt-actions">
+            <button class="receipt-btn print-btn" onclick="printReceipt()">🖨️ <span data-t="receipt_print">طباعة</span></button>
+            <button class="receipt-btn copy-btn" onclick="copyReceipt()">📋 <span data-t="receipt_copy">نسخ</span></button>
+        </div>
+        <button class="popup-x" onclick="closeReceipt()">✕</button>
+    </div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
 <div class="toast" id="toast"></div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AV72syS4ZfE-dRM8RMe-o9-5HslxhU5HvNntbWBRajJIDmbyan63YUUc8f0F4iWHOl_ziTxhIh_31mxu&currency=USD"></script>
