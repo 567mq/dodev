@@ -3,245 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FiveM QBCore Script | ملف سيرفر فايف ام كوستم</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>رقصات FiveM</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 12px;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 10px;
+            background: #FF1018;
+            font-size: 16px;
+        }
+
+        .sa {
+            background-color: #FF1018;
+            width: 800px;
+            max-width: 100%;
+            min-height: 800px;
+            border-radius: 24px;
+            padding: 24px;
+            margin: 0 auto;
+        }
+
+        .emot {
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 0 6px;
+        }
+
+        .sub {
+            color: #ffd9db;
+            font-size: 15px;
+            margin: 0 0 16px;
+        }
+
+        .search {
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .cat {
+            color: #fff;
+            font-size: 20px;
+            margin: 22px 0 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, .35);
+            padding-bottom: 6px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 10px;
+        }
+
+        .item {
+            background: rgba(0, 0, 0, .28);
+            color: #fff;
+            border-radius: 14px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: background .15s, transform .15s;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .item:hover { background: rgba(0, 0, 0, .5); transform: translateY(-2px); }
+
+        .item b { display: block; font-size: 15px; }
+        .item span { font-size: 13px; color: #ffd9db; direction: rtl; display: block; text-align: right; }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+        }
+        .toast.show { opacity: 1; }
+    </style>
 </head>
 <body>
+    <!-- <nav>
+        <ul>
+            <li><a href="#dances">الرقصات</a></li>
+            <li><a href="#fun">حركات</a></li>
+            <li><a href="#poses">وقفات</a></li>
+            <li><a href="#help">طريقة الاستخدام</a></li>
+        </ul>
+    </nav> -->
 
-<header class="head">
-    <div class="row">
-        <div class="logo">FIVEM<span class="dot">.</span>FILES</div>
-        <nav>
-            <a href="#about" data-t="nav_about">المنتج</a>
-            <a href="#orders" data-t="nav_orders">الطلبات</a>
-            <a href="#reviews" data-t="nav_reviews">آراء</a>
-            <a href="#faq" data-t="nav_faq">أسئلة</a>
-        </nav>
-        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+    <div class="sa">
+        <h1 class="emot">الرقصات والإيموتات - FiveM</h1>
+        <p class="sub">اضغط على أي إيموت لنسخ الأمر ثم الصقه في الشات داخل اللعبة</p>
+
+        <input class="search" id="search" type="text" placeholder="ابحث عن إيموت... مثال: dance">
+
+        <div id="list"></div>
+
+        <h2 class="cat" id="help">طريقة الاستخدام</h2>
+        <p class="sub">
+            افتح الشات بزر <b>T</b> واكتب الأمر مثل: <b dir="ltr">/e dance</b><br>
+            لإيقاف الإيموت اضغط <b>X</b> أو اكتب <b dir="ltr">/e c</b><br>
+            قائمة الإيموتات غالباً تفتح بزر <b>F3</b>.<br>
+            ملاحظة: الأسماء مبنية على سكربت rpemotes الشائع، وقد تختلف قليلاً حسب سيرفرك.
+        </p>
     </div>
-</header>
 
-<div class="cursor-glow" id="cursorGlow"></div>
+    <div class="toast" id="toast">تم النسخ</div>
 
-<main>
+    <script>
+        const data = [
+            { id: "dances", title: "الرقصات", items: [
+                ["dance", "رقصة 1"], ["dance2", "رقصة 2"], ["dance3", "رقصة 3"],
+                ["dance4", "رقصة 4"], ["dance5", "رقصة 5"], ["dance6", "رقصة 6"],
+                ["dance7", "رقصة 7"], ["dance8", "رقصة 8"], ["dance9", "رقصة 9"],
+                ["dancef", "رقصة نسائية 1"], ["dancef2", "رقصة نسائية 2"], ["dancef3", "رقصة نسائية 3"],
+                ["dancef4", "رقصة نسائية 4"], ["dancef5", "رقصة نسائية 5"], ["dancef6", "رقصة نسائية 6"],
+                ["danceslow", "رقصة هادية 1"], ["danceslow2", "رقصة هادية 2"],
+                ["danceslow3", "رقصة هادية 3"], ["danceslow4", "رقصة هادية 4"],
+                ["dancesilly", "رقصة مضحكة 1"], ["dancesilly2", "رقصة مضحكة 2"],
+                ["dancesilly3", "رقصة مضحكة 3"], ["dancesilly4", "رقصة مضحكة 4"],
+                ["dancesilly5", "رقصة مضحكة 5"], ["dancesilly6", "رقصة مضحكة 6"],
+                ["dancehorse", "رقصة الحصان"], ["danceglowstick", "رقصة العصا المضيئة"]
+            ]},
+            { id: "fun", title: "حركات", items: [
+                ["wave", "تلويح"], ["clap", "تصفيق"], ["salute", "تحية عسكرية"],
+                ["facepalm", "ضرب الوجه بالكف"], ["thumbsup", "إعجاب"], ["point", "إشارة"],
+                ["shrug", "رفع الكتفين"], ["bow", "انحناء"], ["flex", "عرض العضلات"],
+                ["handshake", "مصافحة"], ["hug", "عناق"], ["cheer", "تشجيع"],
+                ["laugh", "ضحك"], ["cry", "بكاء"], ["pushup", "ضغط"], ["situp", "بطن"]
+            ]},
+            { id: "poses", title: "وقفات", items: [
+                ["lean", "استناد"], ["leanwall", "استناد على الحيط"], ["crossarms", "طي اليدين"],
+                ["sit", "جلوس"], ["sitchair", "جلوس على كرسي"], ["kneel", "ركوع"],
+                ["lay", "استلقاء"], ["think", "تفكير"], ["pose", "وقفة"], ["stand", "وقوف"]
+            ]}
+        ];
 
-<section class="top">
-    <div class="row top-row">
-        <div class="top-text">
-            <p class="label" data-t="hero_label">QBCore Custom Script</p>
-            <h1 data-t="hero_title">ملف سيرفر <span class="dot">FiveM</span> QBCore كوستم</h1>
-            <p class="desc" data-t="hero_desc">
-                ملف اسكربت مخصص لسيرفر QBCore. مبرمج من الصفر ومجرب على سيرفرات حقيقية.
-                ما يبطي السيرفر ويشتغل بدون أي أخطاء. مع تعليمات تثبيت عربي.
-            </p>
-            <div class="price-box">
-                <span class="was">$79</span>
-                <span class="now">$29</span>
-                <span class="off" data-t="hero_off">وفّر 62%</span>
-            </div>
-            <a href="#buy" class="cta" data-t="hero_cta">احصل على الملف</a>
-            <p class="trust" data-t="hero_trust">+300 عميل · تحديثات مجانية · دعم فني</p>
-        </div>
-        <div class="top-vis">
-            <div class="vis-card" id="visCard">
-                <div class="vis-glow"></div>
-                <div class="vis-items">
-                    <i>📁</i><i>🎮</i><i>⚡</i>
-                    <i>🔧</i><i>📦</i><i>⚙️</i>
-                </div>
-                <p class="vis-tag" data-t="hero_tag">ملف واحد كامل</p>
-            </div>
-        </div>
-    </div>
-</section>
+        const list = document.getElementById("list");
+        const search = document.getElementById("search");
+        const toast = document.getElementById("toast");
 
-<section id="about" class="strip">
-    <div class="row">
-        <h2 class="sec-h" data-t="feat_title">ليش ملفنا؟</h2>
-        <div class="feat-row">
-            <div class="feat-card">
-                <span class="feat-n">01</span>
-                <h3 data-t="feat1_h">برمجة من الصفر</h3>
-                <p data-t="feat1_p">الملف مبرمج يدوياً بدون نسخ أو سرقة. كل سطر كود مكتوب خصيصاً لسيرفرك.</p>
-            </div>
-            <div class="feat-card">
-                <span class="feat-n">02</span>
-                <h3 data-t="feat2_h">مجرب قبل لا يوصلك</h3>
-                <p data-t="feat2_p">يشتغل على سيرفر QBCore حقيقي. لو فيه أي مشكلة، ما ننزله.</p>
-            </div>
-            <div class="feat-card">
-                <span class="feat-n">03</span>
-                <h3 data-t="feat3_h">خفييف على السيرفر</h3>
-                <p data-t="feat3_p">الملف محسّن وخفيف. ما يأثر على الـ FPS أو سرعة السيرفر.</p>
-            </div>
-            <div class="feat-card">
-                <span class="feat-n">04</span>
-                <h3 data-t="feat4_h">تحديثات مجانية</h3>
-                <p data-t="feat4_p">اشتري مرة واحصل على كل التحديثات بدون رسوم إضافية.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        function render(filter = "") {
+            const f = filter.trim().toLowerCase();
+            list.innerHTML = "";
+            data.forEach(cat => {
+                const items = cat.items.filter(([cmd, ar]) =>
+                    cmd.includes(f) || ar.includes(f));
+                if (!items.length) return;
 
-<section class="strip dark">
-    <div class="row">
-        <h2 class="sec-h" data-t="pack_title">وش داخل الملف</h2>
-        <div class="pack-grid">
-            <div class="pack-item">
-                <span>📦</span>
-                <h4 data-t="pack1_h">ملف QBCore جاهز</h4>
-                <p data-t="pack1_p">ملف واحد كامل يشتغل على سيرفرك مباشرة</p>
-            </div>
-            <div class="pack-item">
-                <span>📝</span>
-                <h4 data-t="pack2_h">تعليمات عربي</h4>
-                <p data-t="pack2_p">شرح مفصّل خطوة بخطوة بالعربي</p>
-            </div>
-            <div class="pack-item">
-                <span>🔧</span>
-                <h4 data-t="pack3_h">إعداد سهل</h4>
-                <p data-t="pack3_p">تثبيت في دقائق بدون تعقيد</p>
-            </div>
-            <div class="pack-item">
-                <span>⚙️</span>
-                <h4 data-t="pack4_h">متوافق مع QBCore</h4>
-                <p data-t="pack4_p">يشتغل مع جميع إصدارات QBCore</p>
-            </div>
-            <div class="pack-item">
-                <span>🛡️</span>
-                <h4 data-t="pack5_h">آمن ومضمون</h4>
-                <p data-t="pack5_p">ما فيه فيروسات أو كود ضار</p>
-            </div>
-            <div class="pack-item">
-                <span>💬</span>
-                <h4 data-t="pack6_h">دعم فني</h4>
-                <p data-t="pack6_p">نساعدك لو واجهتك أي مشكلة</p>
-            </div>
-        </div>
-    </div>
-</section>
+                const h = document.createElement("h2");
+                h.className = "cat";
+                h.id = cat.id;
+                h.textContent = cat.title;
+                list.appendChild(h);
 
-<section id="reviews" class="strip">
-    <div class="row">
-        <h2 class="sec-h" data-t="rev_title">عملاؤنا يقولون</h2>
-        <div class="rev-row">
-            <div class="rev-card">
-                <p class="rev-stars">★★★★★</p>
-                <p class="rev-text" data-t="rev1_t">"الملف شغال تمام على سيرفري. التثبيت كان سهل والشرح عربي واضح."</p>
-                <p class="rev-name" data-t="rev1_n">أحمد — السعودية</p>
-            </div>
-            <div class="rev-card">
-                <p class="rev-stars">★★★★★</p>
-                <p class="rev-text" data-t="rev2_t">"خفيف وما يبطي السيرفر. جربت ملفات ثانية قبل كذا كانت تسبب مشاكل."</p>
-                <p class="rev-name" data-t="rev2_n">محمد — الكويت</p>
-            </div>
-            <div class="rev-card">
-                <p class="rev-stars">★★★★★</p>
-                <p class="rev-text" data-t="rev3_t">"وقف معاي وقت التثبيت وردّ علي بسرعة. خدمة ممتازة."</p>
-                <p class="rev-name" data-t="rev3_n">خالد — الإمارات</p>
-            </div>
-        </div>
-    </div>
-</section>
+                const grid = document.createElement("div");
+                grid.className = "grid";
+                items.forEach(([cmd, ar]) => {
+                    const d = document.createElement("div");
+                    d.className = "item";
+                    d.innerHTML = "<b>/e " + cmd + "</b><span>" + ar + "</span>";
+                    d.onclick = () => copy("/e " + cmd);
+                    grid.appendChild(d);
+                });
+                list.appendChild(grid);
+            });
+        }
 
-<section id="buy" class="strip dark">
-    <div class="row">
-        <div class="buy-box">
-            <p class="buy-tag" data-t="buy_tag">عرض محدود</p>
-            <h2 data-t="buy_title">ملف QBCore كوستم</h2>
-            <ul class="buy-list">
-                <li data-t="buy1">✅ ملف اسكربت مخصص</li>
-                <li data-t="buy2">✅ تعليمات تثبيت عربي</li>
-                <li data-t="buy3">✅ متوافق مع QBCore</li>
-                <li data-t="buy4">✅ تحديثات مجانية</li>
-                <li data-t="buy5">✅ دعم فني مباشر</li>
-                <li data-t="buy6">✅ تثبيت في دقائق</li>
-            </ul>
-            <div class="buy-price">
-                <span class="was">$79</span>
-                <span class="now">$29</span>
-            </div>
-            <button class="cta buy-btn" onclick="openPay()" data-t="buy_btn">اشترِ الآن</button>
-            <p class="buy-sub" data-t="buy_sub">دفع آمن عبر PayPal</p>
-        </div>
-    </div>
-</section>
+        function copy(text) {
+            const done = () => {
+                toast.textContent = "تم نسخ: " + text;
+                toast.classList.add("show");
+                setTimeout(() => toast.classList.remove("show"), 1500);
+            };
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(done).catch(done);
+            } else {
+                done();
+            }
+        }
 
-<section id="faq" class="strip">
-    <div class="row">
-        <h2 class="sec-h" data-t="faq_title">أسئلة شائعة</h2>
-        <div class="faq-box">
-            <details>
-                <summary data-t="faq1_q">كيف أستلم الملف بعد الدفع؟</summary>
-                <p data-t="faq1_a">بعد الدفع، راح نرسل لك الملف على البريد حقك. وأيضاً تقدر تحمّله من صفحة التأكيد.</p>
-            </details>
-            <details>
-                <summary data-t="faq2_q">الملف يشتغل على أي سيرفر؟</summary>
-                <p data-t="faq2_a">يشتغل على أي سيرفر QBCore. بس تأكد إن الـ QBCore عندك محدّث.</p>
-            </details>
-            <details>
-                <summary data-t="faq3_q">وش أحتاج عشان أثبّت؟</summary>
-                <p data-t="faq3_a">سيرفر FiveM شغال + QBCore. الملف مع مع تعليمات عربي مفصّلة.</p>
-            </details>
-            <details>
-                <summary data-t="faq4_q">أقدر أطلب تعديلات على الملف؟</summary>
-                <p data-t="faq4_a">أيوا، تقدر تتواصل معنا ونسوي لك التعديل اللي تبيه.</p>
-            </details>
-        </div>
-    </div>
-</section>
-
-<section id="orders" class="strip dark">
-    <div class="row">
-        <h2 class="sec-h" data-t="orders_title">الطلبات المسبقة</h2>
-        <div id="ordersList" class="orders-list">
-            <p class="orders-empty" data-t="orders_empty">ما في طلبات سابقة بعد</p>
-        </div>
-    </div>
-</section>
-
-</main>
-
-<footer class="foot">
-    <div class="row foot-row">
-        <div class="foot-brand">FIVEM<span class="dot">.</span>FILES</div>
-        <p class="foot-copy" data-t="footer">© 2026 FiveM Files — جميع الحقوق محفوظة</p>
-    </div>
-</footer>
-
-<div class="overlay" id="overlay" onclick="closePay()">
-    <div class="popup" onclick="event.stopPropagation()">
-        <button class="popup-x" onclick="closePay()">✕</button>
-        <h3 data-t="popup_title">إتمام الطلب</h3>
-        <div class="popup-item">
-            <span data-t="popup_product">ملف QBCore كوستم</span>
-            <span>$29</span>
-        </div>
-        <div class="popup-total">
-            <span data-t="popup_total">الإجمالي</span>
-            <span>$29</span>
-        </div>
-        <div id="paypal-box"></div>
-        <p class="popup-note" data-t="popup_note">الأموال تتحول مباشرة لحسابنا عبر PayPal</p>
-    </div>
-</div>
-
-<div class="overlay" id="receiptOverlay" onclick="closeReceipt()">
-    <div class="popup receipt-popup" onclick="event.stopPropagation()">
-        <div class="receipt" id="receiptContent"></div>
-        <div class="receipt-actions">
-            <button class="receipt-btn print-btn" onclick="printReceipt()">🖨️ <span data-t="receipt_print">طباعة</span></button>
-            <button class="receipt-btn copy-btn" onclick="copyReceipt()">📋 <span data-t="receipt_copy">نسخ</span></button>
-        </div>
-        <button class="popup-x" onclick="closeReceipt()">✕</button>
-    </div>
-</div>
-
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="toast" id="toast"></div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=AV72syS4ZfE-dRM8RMe-o9-5HslxhU5HvNntbWBRajJIDmbyan63YUUc8f0F4iWHOl_ziTxhIh_31mxu&currency=USD"></script>
-<script src="script.js"></script>
+        search.addEventListener("input", e => render(e.target.value));
+        render();
+    </script>
 </body>
 </html>
