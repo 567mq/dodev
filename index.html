@@ -123,7 +123,7 @@
     </nav> -->
 
     <div class="sa">
-        <h1 class="emot">الرقصات والإيموتات - FiveM</h1>
+        <h1 class="emot">اهم الرقصات  - FiveM</h1>
         <p class="sub">اضغط على أي إيموت لنسخ الأمر ثم الصقه في الشات داخل اللعبة</p>
 
         <input class="search" id="search" type="text" placeholder="ابحث عن إيموت... مثال: dance">
@@ -134,12 +134,12 @@
         <p class="sub">
             افتح الشات بزر <b>T</b> واكتب الأمر مثل: <b dir="ltr">/e dance</b><br>
             لإيقاف الإيموت اضغط <b>X</b> أو اكتب <b dir="ltr">/e c</b><br>
-            قائمة الإيموتات غالباً تفتح بزر <b>F3</b>.<br>
+            قائمة الإيموتات غالباً تفتح بزر <b>F4</b>.<br>
             ملاحظة: الأسماء مبنية على سكربت rpemotes الشائع، وقد تختلف قليلاً حسب سيرفرك.
         </p>
     </div>
 
-    <div class="toast" id="toast">تم النسخ</div>
+    <div class="toast" id="toast"> ابو عابد نسخه لك: </div>
 
     <script>
         const data = [
@@ -203,7 +203,7 @@
 
         function copy(text) {
             const done = () => {
-                toast.textContent = "تم نسخ: " + text;
+                toast.textContent = " ابو عابد نسخه لك: " + text;
                 toast.classList.add("show");
                 setTimeout(() => toast.classList.remove("show"), 1500);
             };
